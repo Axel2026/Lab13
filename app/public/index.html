@@ -13,7 +13,8 @@
     <link href="/static/css/main.5a0696fd.chunk.css" rel="stylesheet">
 </head>
 <body>
-<div id="root"><h2>Test1ABCD</h2>
+<div id="root"><h1>TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ</h1>
+    <br><br><br>
     <div class="box generalbox generalboxcontent boxaligncenter clearfix">
         <link rel="stylesheet"
               href="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/styleMOODLE.css"
@@ -512,6 +513,2121 @@
         </table>
     </div>
     <div class="modified">Ostatnia modyfikacja: piątek, 5 marzec 2021, 10:28</div>
+
+    <br><br><br>
+    <h1>Zapytania wybierające z klauzulą WHERE. Operacje na zbiorach</h1>
+    <br><br><br>
+
+    <div class="box generalbox generalboxcontent boxaligncenter clearfix">
+        <link type="text/css"
+              href="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Zapytania wybierające z klauzulą WHERE. Operacje na zbiorach._files/styleMOODLE.css"
+              rel="stylesheet">
+        <table class="normal" width="100%" cellspacing="0" cellpadding="20" border="0">
+            <tbody>
+            <tr>
+                <td>
+                    <p class="title">Bazy danych :: SQL - <b>Zapytania wybierające z klauzulą WHERE. Operacje na
+                        zbiorach.</b></p>
+                    <p class="subtitle">Przygotowanie teoretyczne</p>
+                    <p></p>
+                    <p class="subtitle">Cele dydaktyczne </p>
+                    <p class="subtitle">Literatura i odsyłacze</p>
+                    <ol>
+                        <li>
+                            <a href="http://www.oracle.com/technetwork/issue-archive/2005/05-jul/o45sql-097727.html">Oracle:
+                                Nulls: Nothing to Worry About</a></li>
+                        <li><a href="http://www.postgresql.org/docs/9.0/interactive/functions-matching.html">PostgreSQL:
+                            Documentation: Manuals: PostgreSQL 9.0: Pattern Matching</a></li>
+                        <li><a href="http://pubs.opengroup.org/onlinepubs/007908799/xbd/re.html"><span
+                                class="citation Journal"></span></a><a rel="nofollow" class="external text"
+                                                                       href="http://www.opengroup.org/onlinepubs/007908799/xbd/re.html">Regular
+                            Expressions <i>The Single UNIX Specification, Version 2</i></a></li>
+                        <li><a href="http://pubs.opengroup.org/onlinepubs/007908799/xbd/re.html"><span
+                                class="citation Journal"></span></a><a rel="nofollow" class="external text"
+                                                                       href="https://regex101.com/">Regular
+                            Expressions Builder, Matcher &amp; Tester (1)<br></a></li>
+                        <li><a href="http://pubs.opengroup.org/onlinepubs/007908799/xbd/re.html"><span
+                                class="citation Journal"></span></a><a rel="nofollow" class="external text"
+                                                                       href="https://regexr.com/">Regular
+                            Expressions Builder, Matcher &amp; Tester (2)<br></a></li>
+                    </ol>
+                    <p class="subtitle">Przebieg ćwiczenia</p>
+                    <dl>
+                        <dt>T1 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20741#T1">Zapytania
+                            wybierające z klauzulą WHERE</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20741#T1_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20741#T1_2">Zadania</a><br>
+                        </dd>
+                        <dt>T2 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20741#T2">Zapytania z
+                            operatorami UNION, INTERSECT, EXCEPT</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20741#T2_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20741#T2_2">Zadania</a><br>
+                        </dd>
+                        <dd><br></dd>
+                    </dl>
+                    <p style="font-weight: bold;"><a
+                            style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" name="T1"> <span
+                            style="color: rgb(0, 0, 0);">TEMAT</span> : <span style="text-decoration: underline;">Zapytania wybierające z klauzulą WHERE</span></a><br>
+                    </p>
+                    <ol>
+                        <li><a name="T1_1"> <span style="font-weight: bold;">Wprowadzenie</span></a><br><br></li>
+                        <ol type="A">
+                            <li>Definiowanie zapytania wybierającego z klauzulą <b>WHERE</b>.
+                                <p>Klauzula <b>WHERE </b>jest klauzulą selekcji, która wybiera z tabeli wszystkie
+                                    rekordy spełniające określony warunek. Przy definiowaniu kryteriów wyboru
+                                    rekordów z tabeli można wykorzystać następujące klasy predykatów:</p>
+                                <p></p>
+                                <center>
+                                    <table style="width: 800px; height: 367px;" class="table" cellspacing="0"
+                                           cellpadding="5" bordercolor="#ffffff" border="1">
+                                        <tbody>
+                                        <tr>
+                                            <th>Klasa predykatów
+                                            </th>
+                                            <th style="text-align: center;">Alternatywna notacja<br>
+                                            </th>
+                                            <th style="text-align: center;">Opis
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="1">=, &lt;&gt;, &gt;, &gt;=, &lt;, &lt;=<br>
+                                            </td>
+                                            <td rowspan="1"><br>
+                                            </td>
+                                            <td style="text-align: center;" rowspan="1">Porównuje dwie wartości, dwa
+                                                wyrażenia<br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>BETWEEN...AND...
+                                            </td>
+                                            <td rowspan="1"><br>
+                                            </td>
+                                            <td>Sprawdza czy wartość znajduje się w określonym zakresie (przedziale
+                                                domkniętym)<br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>IN(...,...)
+                                            </td>
+                                            <td rowspan="1"><br>
+                                            </td>
+                                            <td>Sprawdza czy wartość znajduje się na zadanej liście (w zadanym
+                                                zbiorze)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>LIKE<br>NOT LIKE<br>
+                                            </td>
+                                            <td rowspan="1">~~<br>!~~<br>
+                                            </td>
+                                            <td>Sprawdza czy wartość odpowiada podanemu wzorcowi<br>(% - oznacza
+                                                dowolny łańcuch znaków /także zerowy/,<br> _ - oznacza dowolny,
+                                                dokładnie jeden znak)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>ILIKE<br>NOT ILIKE<br>
+                                            </td>
+                                            <td rowspan="1">~~*<br>!~~*<br>
+                                            </td>
+                                            <td>j.w. (nie jest brana pod uwagę wielkość liter)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SIMILAR TO<br>NOT SIMILAR TO<br>
+                                            </td>
+                                            <td rowspan="1"><br>
+                                            </td>
+                                            <td>Sprawdza czy wartość odpowiada podanemu wzorcowi<br>(% - oznacza
+                                                dowolny łańcuch znaków /także zerowy/, <br> _ - oznacza dowolny,
+                                                dokładnie jeden znak,<br>| - oznacza alternatywę,<br>* - oznacza
+                                                powtórzenie poprzedniego znaku 0 lub więcej razy,<br>+ - oznacza
+                                                powtórzenie poprzedniego znaku 1 lub więcej razy)<br>W odróżnieniu
+                                                od predykatu LIKE/ILIKE może wykorzystywać wyrażenia regularne<br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>~<br>!~<br>
+                                            </td>
+                                            <td rowspan="1"><br>
+                                            </td>
+                                            <td>Sprawdza czy wartość odpowiada podanemu wzorcowi<br>(. - oznacza
+                                                dowolny znak,<br>| - oznacza alternatywę,<br>* - oznacza powtórzenie
+                                                poprzedniego znaku 0 lub więcej razy,<br>+ - oznacza powtórzenie
+                                                poprzedniego znaku 1 lub więcej razy)<br>W odróżnieniu od predykatu
+                                                SIMILAR TO może wykorzystywać wyrażenia regularne standardu
+                                                POSIX<br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>~*<br>!~*<br>
+                                            </td>
+                                            <td rowspan="1"><br>
+                                            </td>
+                                            <td>j.w. (nie jest brana pod uwagę wielkość liter)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>IS NULL<br>IS NOT NULL
+                                            </td>
+                                            <td rowspan="1"><br>
+                                            </td>
+                                            <td>Sprawdza czy wartość jest wartością NULL<br>Sprawdza czy wartość nie
+                                                jest wartością NULL
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </center>
+                                <p>Składnia:</p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                class="sqlkey">AS</span> alias_kolumny | *]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> nazwa_tabeli
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">WHERE</span> warunek;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>Przykłady:<br><br>a) Operatory LIKE (~~), SIMILAR TO oraz wyrażenia regularne
+                                    POSIX.<br></p>
+                                <p>
+                                    <iframe name="SqlWhere_PODSTAWOWE_EXAMPLES_1"
+                                            src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Zapytania wybierające z klauzulą WHERE. Operacje na zbiorach._files/SqlWhere_PODSTAWOWE_EXAMPLES_1.html"
+                                            width="100%" height="900" frameborder="0"></iframe>
+                                </p>
+                                <p>b) Operatory BETWEN .. AND, IN, IS oraz OVERLAPS.<br></p>
+                                <p>
+                                    <iframe name="SqlWhere_PODSTAWOWE_EXAMPLES_2"
+                                            src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Zapytania wybierające z klauzulą WHERE. Operacje na zbiorach._files/SqlWhere_PODSTAWOWE_EXAMPLES_2.html"
+                                            width="100%" height="350" frameborder="0"></iframe>
+                                </p>
+                                <p></p></li>
+                            <br><br>
+                            <li>Definiowanie zapytania wybierającego z klauzulą <b>WHERE </b>oraz operatorami
+                                logicznymi.<br></li>
+                            <p>Klauzula <b>WHERE </b>może zawierać operatory logiczne <span
+                                    style="font-weight: bold;">OR</span>, <span
+                                    style="font-weight: bold;">AND</span> oraz <span
+                                    style="font-weight: bold;">NOT</span>.<br></p>
+                            <p></p>
+                            <center>
+                                <table class="table" style="width: 606px;" cellspacing="0" cellpadding="5"
+                                       bordercolor="#ffffff" border="1">
+                                    <tbody>
+                                    <tr>
+                                        <th>A OR B
+                                        </th>
+                                        <th>TRUE
+                                        </th>
+                                        <th>FALSE
+                                        </th>
+                                        <th style="text-align: center;">NULL
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>TRUE
+                                        </th>
+                                        <td>TRUE
+                                        </td>
+                                        <td>TRUE
+                                        </td>
+                                        <td>TRUE
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>FALSE
+                                        </th>
+                                        <td>TRUE
+                                        </td>
+                                        <td>FALSE
+                                        </td>
+                                        <td>NULL
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>NULL
+                                        </th>
+                                        <td>TRUE
+                                        </td>
+                                        <td>NULL
+                                        </td>
+                                        <td>NULL
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                            <p></p>
+                            <center>
+                                <table class="table" style="width: 606px;" cellspacing="0" cellpadding="5"
+                                       bordercolor="#ffffff" border="1">
+                                    <tbody>
+                                    <tr>
+                                        <th>A AND B
+                                        </th>
+                                        <th>TRUE
+                                        </th>
+                                        <th>FALSE
+                                        </th>
+                                        <th>NULL
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>TRUE
+                                        </th>
+                                        <td>TRUE
+                                        </td>
+                                        <td>FALSE
+                                        </td>
+                                        <td>NULL
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>FALSE
+                                        </th>
+                                        <td>FALSE
+                                        </td>
+                                        <td>FALSE
+                                        </td>
+                                        <td>FALSE
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>NULL
+                                        </th>
+                                        <td>NULL
+                                        </td>
+                                        <td>FALSE
+                                        </td>
+                                        <td>NULL
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                            <p></p>
+                            <center>
+                                <table class="table" style="width: 606px;" cellspacing="0" cellpadding="5"
+                                       bordercolor="#ffffff" border="1">
+                                    <tbody>
+                                    <tr>
+                                        <th>A
+                                        </th>
+                                        <th>NOT A
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>TRUE
+                                        </th>
+                                        <td>FALSE
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>FALSE
+                                        </th>
+                                        <td>TRUE
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>NULL
+                                        </th>
+                                        <td>NULL
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                            <p>Przykłady:</p>
+                            <p>
+                            </p>
+                            <table class="sql" cellspacing="2" cellpadding="2">
+                                <tbody>
+                                <tr>
+                                    <td colspan="2"><span class="sqlkey">SELECT</span> *
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br>
+                                    </td>
+                                    <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br>
+                                    </td>
+                                    <td><span class="sqlkey">WHERE</span> imie <span class="sqlkey">LIKE</span> '%a'
+                                        <span class="sqlkey">AND </span>nazwisko <span class="sqlkey">LIKE </span>'A%';<br>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p></p>
+                            <p>
+                            </p>
+                            <table class="sql" cellspacing="2" cellpadding="2">
+                                <tbody>
+                                <tr>
+                                    <td colspan="2"><span class="sqlkey">SELECT</span> *
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br>
+                                    </td>
+                                    <td><span class="sqlkey">FROM</span> dziekanat.przedmioty
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br>
+                                    </td>
+                                    <td><span class="sqlkey">WHERE</span> nazwa_przedmiotu = 'Algebra liniowa' <span
+                                            class="sqlkey">AND</span> nr_semestru = 2;
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p></p> <br><br>
+                            <li>Definiowanie zapytania wybierającego z klauzulą <b>ORDER BY</b>.
+                                <p>Klauzula <b>ORDER BY</b> określa kolejność rekordów w jakiej zostaną zwrócone
+                                    jako rezultat zapytania. Rekordy wynikowe mogą być posortowane w następujący
+                                    sposób: </p>
+                                <ul>
+                                    <li>rosnąco <b>ASC </b>(ang. ascending);</li>
+                                    <li>malejąco <b>DESC </b>(ang. descending).</li>
+                                </ul>
+                                <p>Składnia:</p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                class="sqlkey">AS</span> alias_kolumny | *]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> nazwa_tabeli
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> nazwa_kolumny [<span
+                                                class="sqlkey">ASC</span> | <span class="sqlkey">DESC</span>] [<span
+                                                class="sqlkey">NULLS </span>{<span class="sqlkey">FIRST</span> |
+                                            <span class="sqlkey">LAST</span>}],...,nazwa_kolumny [<span
+                                                    class="sqlkey">ASC</span> | <span class="sqlkey">DESC</span>]
+                                            [<span class="sqlkey">NULLS </span>{<span class="sqlkey">FIRST</span> |
+                                            <span class="sqlkey">LAST</span>}];
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                class="sqlkey">AS</span> alias_kolumny | *]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> nazwa_tabeli
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> nr_kolumny [<span class="sqlkey">ASC</span>
+                                            | <span class="sqlkey">DESC</span>] [<span class="sqlkey">NULLS </span>{<span
+                                                    class="sqlkey">FIRST</span> | <span class="sqlkey">LAST</span>}],...,nr_kolumny
+                                            [<span class="sqlkey">ASC</span> | <span class="sqlkey">DESC</span>]
+                                            [<span class="sqlkey">NULLS </span>{<span class="sqlkey">FIRST</span> |
+                                            <span class="sqlkey">LAST</span>}];
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>Przykłady:</p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> *
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> nazwisko, imie <span
+                                                class="sqlkey">ASC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> *
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 3, 2 <span
+                                                class="sqlkey">ASC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu, imie, nazwisko
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 1 <span class="sqlkey">ASC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu::CHARACTER(5),
+                                            imie, nazwisko
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 1 <span class="sqlkey">ASC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> lpad(nr_albumu, 5,
+                                            '0')::CHARACTER(5), imie, nazwisko
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 1 <span class="sqlkey">ASC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu, imie, nazwisko
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> lpad(nr_albumu, 5,
+                                            '0')::CHARACTER(5) <span class="sqlkey">ASC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu::INTEGER, imie,
+                                            nazwisko
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 1 <span class="sqlkey">ASC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu, imie, nazwisko
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> nr_albumu::INTEGER <span
+                                                class="sqlkey">ASC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p></li>
+                            <br><br>
+                            <li>Definiowanie zapytania wybierającego z klauzulami <b>ALL </b>oraz <b>DISTINCT</b>.
+                                <p>Klauzula <b>DISTINCT </b>stosowana jest w celu wyeliminowania powtarzających się
+                                    rekordów.</p>
+                                <p>Składnia:</p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT</span> [<span
+                                                class="sqlkey">ALL</span> | <span class="sqlkey"><span
+                                                class="sqlkey">DISTINCT</span> </span>[<span class="sqlkey"><span
+                                                class="sqlkey">ON </span></span>klauzula_nazwa_kolumny_1,..., <span
+                                                class="sqlkey"><span class="sqlkey"></span></span>klauzula_nazwa_kolumny_m]]
+                                            [nazwa_kolumny_1 <span class="sqlkey">AS</span>
+                                            alias_kolumny_1,...,nazwa_kolumny_n <span class="sqlkey">AS</span>
+                                            alias_kolumny_n | *]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> nazwa_tabeli;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>Przykłady:</p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT DISTINCT</span> wku <span
+                                                class="sqlkey">AS</span> "WKU"
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.wojsko;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT ALL</span> wku <span
+                                                class="sqlkey">AS</span> "WKU"
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.wojsko;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT DISTINCT </span>tryb_studiow,
+                                            stopien_studiow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.kierunki_studiow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 1 <span class="sqlkey">DESC</span>,
+                                            2;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT DISTINCT ON </span>(tryb_studiow,
+                                            stopien_studiow) tryb_studiow, stopien_studiow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.kierunki_studiow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 1 <span class="sqlkey">DESC</span>,
+                                            2;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT DISTINCT ON </span>(tryb_studiow)
+                                            tryb_studiow, stopien_studiow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.kierunki_studiow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 1 <span class="sqlkey">DESC</span>,
+                                            2;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellspacing="2" cellpadding="2">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">SELECT DISTINCT ON </span>(tryb_studiow,
+                                            stopien_studiow) tryb_studiow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> dziekanat.kierunki_studiow
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">ORDER BY</span> 1 <span class="sqlkey">DESC</span>;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="note" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td><img
+                                                src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Zapytania wybierające z klauzulą WHERE. Operacje na zbiorach._files/note.gif"
+                                                width="28" height="25" border="0">
+                                        </td>
+                                        <td style="font-style: italic;" valign="center" align="left">
+                                            <div style="text-align: left;"><span style="font-weight: bold;">.:: Intencjonalne pomijanie danych przy użyciu klauzuli DISTINCT ON ::.</span><br>
+                                            </div>
+                                            <br>W przypadku użycia klauzuli <b>DISTINCT ON</b> może nastąpić
+                                            pominięcie określonych danych.<br><br>Przykład:<br>1) Poniższe zapytanie
+                                            zwraca wynagrodzenia wszystkich prowadzacych posortowane rosnąco wg
+                                            stanowiska oraz malejąco wg płacy zasadniczej z wartościami NULL
+                                            umieszczonymi na końcu. Rezultat może zawierać duplikaty.<br>SELECT
+                                            stanowisko, placa_zasadnicza<br>FROM kadry.prowadzacy<br>ORDER BY 1, 2
+                                            DESC NULLS LAST;<br><br>2) Stosując klauzulę DISTINCT ON możliwe jest
+                                            wybranie spośród wszystkich rekordów zwróconych przez w/w zapytanie (1),
+                                            tylko tych, które znajdują się na początku każdej grupy stanowisk. W
+                                            rezultacie zapytanie zwraca najwyższe wynagrodzenia na poszczególnych
+                                            stanowiskach.<br>SELECT DISTINCT ON (stanowisko) stanowisko,
+                                            placa_zasadnicza<br>FROM kadry.prowadzacy<br>ORDER BY 1, 2 DESC NULLS
+                                            LAST;<br>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p></li>
+                            <br>
+                        </ol>
+                        <li><a name="T1_2" style="font-weight: bold;">Zadania</a><br><br>
+                            <ol type="A">
+                                <li>Utwórz zapytanie, wybierające z tabeli <b>studenci </b> podstawowe informacje
+                                    <b>Nr albumu</b>, <b>Imię</b>, <b>Nazwisko</b>, <b>PESEL</b> o wszystkich
+                                    studentkach (płeć jest zapisana w 10 cyfrze PESEL-u). Następnie zmodyfikuj
+                                    kwerendę tak, aby uzyskiwane wyniki były posortowane według <b>Nazwiska </b>studenta.<br><br><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20742"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20742">ZADANIA T1/2/A</a>.<br><br></span>
+                                </li>
+                                <li>Zdefiniuj kwerendę wyszukującą w tabeli <b>adresy </b>wszystkich studentów
+                                    zamieszkujących w województwie <b>podkarpackim</b> lub <b>lubuskim</b>. Spośród
+                                    dostępnych atrybutów wyświetl <b>Ulicę</b>, <b>Numer domu</b>, <b>Kod
+                                        pocztowy</b> oraz <b>Miasto</b>.<br><br><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20743"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20743">ZADANIA T1/2/B</a>.<br></span><br>
+                                </li>
+                                <li>Określ zapytanie pozwalające wyświetlić wszystkie wzajemnie różne tj.
+                                    niepowtarzające się <b>Miejscowości</b> z tabeli <b>adresy</b>.<br><br><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20744"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20744">ZADANIA T1/2/C</a>.<br></span><br>
+                                </li>
+                                <li>Zaprojektuj zapytanie, wybierające z tabeli <b>osobiste </b>wszystkich
+                                    studentów, którzy nie posiadają wprowadzonego <b>Telefonu
+                                        komórkowego</b>.<br><br><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20745"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20745">ZADANIA T1/2/D</a>.<br><br></span>
+                                </li>
+                                <li><span>Utwórz zapytanie, wybierające z tabeli <b>fakultety</b> wszystkie <b>dostępne</b> do wyboru fakultety. Następnie zmodyfikuj kwerendę tak, aby uzyskiwane wyniki były posortowane według <b>Id prowadzącego</b>.<br><span
+                                        style="font-weight: bold; color: rgb(0, 0, 0);"><br>Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20746"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20746">ZADANIA T1/2/E</a>.<br><br></span></span>
+                                </li>
+                                <li><span><span>Zdefiniuj zapytanie wyszukujące w tabeli <b>prowadzacy</b> wszystkich pracowników których <b>Płaca zasadnicza</b> zawiera się w przedziale domkniętym od 4000 zł do 6000 zł lub jest nieokreślona tj. ma wartość NULL. Spośród dostępnych atrybutów wyświetl <b>Imię</b>, <b>Nazwisko</b>, <b>Tytuł</b>, <b>Stanowisko</b> </span></span><span><span><span><span> oraz </span></span><b><span><span>Płacę zasadniczą</span></span></b>. Płaca zasadnicza ma być zwrócona w postaci walutowej np. <b>4000 zł</b>. Rezultat powinien być posortowany rosnąco wg <b>Płacy zasadniczej</b> z wartościami NULL na początku.<br><br></span></span><span><span
+                                        style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20747"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20747">ZADANIA T1/2/F</a>.<br><br></span></span>
+                                </li>
+                                <li><span>Utwórz zapytanie, wybierające z tabeli <b>studenci</b> wszystkich studentów urodzonych w roku przestępnym.<br><span
+                                        style="font-weight: bold; color: rgb(0, 0, 0);"><br>Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20748"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20748">ZADANIA T1/2/G</a>.</span></span>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <ol>&nbsp;
+                    </ol>
+                    <span><span style="font-weight: bold;"></span></span>
+                    <ol><br><br>
+                    </ol>
+                    <p style="font-weight: bold;"><a
+                            style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" name="T2"> <span
+                            style="color: rgb(0, 0, 0);">TEMAT</span> : <span style="text-decoration: underline;">Zapytania z operatorami UNION, INTERSECT, EXCEPT</span></a><br>
+                    </p>
+                    <ol>
+                        <li><a name="T2_1"> <span style="font-weight: bold;">Wprowadzenie</span></a><br><br>
+                            <ol type="A">
+                                <li>Definiowanie łączenia tabel z wykorzystaniem operatora UNION.<br>
+                                    <p>Klauzula <i>CORRESPONDING BY</i> nie jest dla operatora UNION wspierana przez
+                                        <a href="http://www.postgresql.org/">PostgreSQL</a>.</p>
+                                    <p>Składnia:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny | *]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> nazwa_schematu_1.nazwa_tabeli_1
+                                                <span class="sqlkey"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">UNION</span> [<span class="sqlkey">ALL</span>
+                                                | <span class="sqlkey">CORRESPONDING</span> [<span
+                                                        class="sqlkey">BY</span> [nazwa_kolumny,...,nazwa_kolumny]]]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny | *]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> nazwa_schematu_2.nazwa_tabeli_2
+                                                <span class="sqlkey"></span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <p>Przykład:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> dziekanat.studenci_kierunkow <span
+                                                    class="sqlkey">WHERE</span> id_kierunku_studiow =<span
+                                                    class="sqlkey"></span> 1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">UNION</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> dziekanat.studenci_kierunkow <span
+                                                    class="sqlkey">WHERE</span> id_kierunku_studiow = 5;
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> dziekanat.studenci_kierunkow <span
+                                                    class="sqlkey">WHERE</span> id_kierunku_studiow =<span
+                                                    class="sqlkey"></span> 1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">UNION ALL</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> dziekanat.studenci_kierunkow <span
+                                                    class="sqlkey">WHERE</span> id_kierunku_studiow = 5;
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p></li>
+                                <br>
+                                <li>
+                                    <p>Definiowanie łączenia tabel z wykorzystaniem operatora INTERSECT.</p>
+                                    <p>Operator INTERSECT realizuje przecięcie dwóch tabel, którego rezultatem jest
+                                        tabela wynikowa zawierająca wszystkie rekordy, które są wspólne dla obu
+                                        tabel.</p>
+                                    <p>Klauzula <i>CORRESPONDING BY</i> nie jest dla operatora INTERSECT wspierana
+                                        przez <a href="http://www.postgresql.org/">PostgreSQL</a>.</p>
+                                    <p>Składnia:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny | *]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> nazwa_schematu_1.nazwa_tabeli_1
+                                                <span class="sqlkey"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">INTERSECT</span> [<span
+                                                    class="sqlkey">ALL</span> | <span
+                                                    class="sqlkey">CORRESPONDING</span> [<span
+                                                    class="sqlkey">BY</span> [nazwa_kolumny,...,nazwa_kolumny]]]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny | *]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> nazwa_schematu_2.nazwa_tabeli_2
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <p>Przykład:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> dziekanat.studenci_kierunkow <span
+                                                    class="sqlkey">WHERE</span> id_kierunku_studiow = 1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">INTERSECT</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> dziekanat.studenci_kierunkow <span
+                                                    class="sqlkey">WHERE</span> id_kierunku_studiow = 5;
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p></li>
+                                <br>
+                                <li>
+                                    <p>Definiowanie łączenia tabel z wykorzystaniem operatora EXCEPT.</p>
+                                    <p>Operator EXCEPT realizuje różnicę dwóch tabel, której rezultatem jest tabela
+                                        wynikowa zawierająca wszystkie rekordy tabeli pierwszej nie występujące w
+                                        tabeli drugiej.</p>
+                                    <p>Klauzula <span style="font-style: italic;">CORRESPONDING BY</span> nie jest
+                                        dla operatora EXCEPT wspierana przez <a href="http://www.postgresql.org/">PostgreSQL</a>.
+                                    </p>
+                                    <p>Składnia:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny | *]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> nazwa_tabeli_1 <span
+                                                    class="sqlkey"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">EXCEPT</span> [<span
+                                                    class="sqlkey">ALL</span> | <span
+                                                    class="sqlkey">CORRESPONDING</span> [<span
+                                                    class="sqlkey">BY</span> [nazwa_kolumny,...,nazwa_kolumny]]]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> [nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny,...,nazwa_kolumny <span
+                                                    class="sqlkey">AS</span> alias_kolumny | *]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> nazwa_tabeli_1 <span
+                                                    class="sqlkey"></span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <p>Przykład:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> dziekanat.studenci_kierunkow <span
+                                                    class="sqlkey">WHERE</span> id_kierunku_studiow = 1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">EXCEPT</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">SELECT</span> nr_albumu
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">FROM</span> dziekanat.studenci_kierunkow <span
+                                                    class="sqlkey">WHERE</span> id_kierunku_studiow = 5;
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p> <br> <br></li>
+                            </ol>
+                        </li>
+                        <li><a name="T2_2" style="font-weight: bold;">Zadania</a><br><br>
+                            <ol type="A">
+                                <li>Utwórz zapytanie wyszukujące wszystkie adresy, które nie są przypisane do
+                                    żadnego studenta tzn. wartość pola <b>id_adresu</b> tabeli <b>adresy</b> nie
+                                    występuje zarówno w polu <b>adres_zamieszkania</b> jak i polu <b>adres_korespondencyjny </b>tabeli
+                                    <b>studenci</b>.<br><br><span style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20749"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20749">ZADANIA T2/2/A</a>.<br><br></span>
+                                </li>
+                                <li>Utwórz zapytanie wybierające z tabel <b>studenci</b> oraz <b>prowadzacy</b>
+                                    wszystkich studentów oraz pracowników, których nazwisko rozpoczyna się od
+                                    '<b>K</b>'. Jako rezultat wyświetl <b>Imię</b>,<b> Nazwisko</b> osoby oraz <b>Kategorię</b>
+                                    do jakiej osoba należy (STUDENT, PRACOWNIK).<br><br><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20750"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20750">ZADANIA T2/2/B</a>.</span>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br></div>
+
+    <br><br><br>
+    <h1>Wprowadzanie, usuwanie oraz aktualizacja danych</h1>
+    <br><br><br>
+    <div class="box generalbox generalboxcontent boxaligncenter clearfix">
+        <link rel="stylesheet"
+              href="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/styleMOODLE.css"
+              type="text/css">
+        <table class="normal" width="100%" cellspacing="0" cellpadding="20" border="0">
+            <tbody>
+            <tr>
+                <td>
+                    <p class="title">Bazy danych :: SQL - <strong>Wprowadzanie, usuwanie oraz aktualizacja
+                        danych.</strong></p>
+                    <p class="subtitle">Przygotowanie teoretyczne</p>
+                    <p></p>
+                    <p class="subtitle">Cele dydaktyczne</p>
+                    <p></p>
+                    <p class="subtitle">Literatura i odsyłacze</p>
+                    <ol>
+                        <li><a title="PostgreSQL : Documentation: Manuals: PostgreSQL 9.6: Data manipulation"
+                               href="https://www.postgresql.org/docs/9.6/dml.html">PostgreSQL: Documentation:
+                            Manuals: PostgreSQL 9.6: Data manipulation</a></li>
+                        <li><a title="PostgreSQL : Documentation: Manuals: PostgreSQL 9.6: Data manipulation"
+                               href="https://www.postgresql.org/docs/9.6/dml.html">PostgreSQL: Documentation:
+                            Manuals: PostgreSQL 9.6: Returning Data From Modified Rows</a></li>
+                    </ol>
+                    <p class="subtitle">Przebieg ćwiczenia</p>
+                    <dl>
+                        <dt>T1 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T1">Wprowadzanie
+                            danych</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T1_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T1_2">Zadania</a><br>
+                        </dd>
+                        <dt>T2 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T2">Usuwanie
+                            danych</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T2_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T2_2">Zadania</a><br>
+                        </dd>
+                        <dt>T3 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T3">Aktualizacja
+                            danych</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T3_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20752#T3_2">Zadania</a><br>
+                        </dd>
+                        <dd><br></dd>
+                    </dl>
+                    <p><b>TEMAT</b> : <a name="T1"><u>Wprowadzanie danych</u></a><br></p>
+                    <ol>
+                        <li><a name="T1_1"> <b>Wprowadzenie<br><br></b></a></li>
+                        <ol type="A">
+                            <li>Wprowadzanie pojedynczego rekordu:<br>
+                                <p>Składnia:</p>
+                                <p>
+                                </p>
+                                <table class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> nazwa_tabeli
+                                            [(nazwa_kolumny_1,...,nazwa_kolumny_n)]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> (wartosc_1,...,wartosc_n);
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> nazwa_tabeli<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> (wartosc_1,...,wartosc_n);
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="note" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td><img
+                                                src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/note.gif"
+                                                width="28" height="25" border="0">
+                                        </td>
+                                        <td style="font-style: italic;" valign="center" align="left">
+                                            <div style="text-align: left;"><span style="font-weight: bold;">.:: Logiczna niezależność danych ::.</span><br>
+                                            </div>
+                                            <br>Zgodnie z #9 postulatem Codd'a dotyczącym <span
+                                                style="font-weight: bold;">logicznej niezależności danych</span>:<br>-
+                                            porządek kolumn w rekordzie tabeli;<br>oraz<br>- porządek rekordów w
+                                            tabeli;<br>nie mają żadnego wpływu na odczytywanie danych z
+                                            wykorzystaniem zapytań.<br>W związku z powyższym:<br>1) kolejność kolumn
+                                            tabeli, które są uzupełniane danymi jest <span
+                                                style="font-weight: bold;">dowolna</span> (patrz przykład a oraz b)
+                                            przy warunku, że kolumny są wskazane jawnie*;<br>2) liczba kolumn
+                                            tabeli, które są uzupełnianie danymi jest <span
+                                                style="font-weight: bold;">dowolna </span>(patrz przykład c) przy
+                                            warunku, że kolumny są wskazane jawnie* oraz przy zachowaniu ograniczeń
+                                            narzuconych dla tabeli (np. więzów NOT NULL);<br>3) pozycja w jakiej
+                                            rekord zostanie w tabeli dodany jest <span style="font-weight: bold;">dowolna</span>
+                                            (fizyczna lokalizacja rekordu jest nieprzewidywalna i wynika z
+                                            optymalizacji zapisu danych w pamięci);<br><br>*) W przypadku gdy
+                                            kolumny nie są wskazane jawnie (patrz przykład d) w SZBD domyślnie
+                                            przyjmowane jest, że uzupełniane są wszystkie kolumny w kolejności ich
+                                            występowania w tabeli.<br>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>Przykłady:<br><br>a)<br></p>
+                                <p>
+                                </p>
+                                <table title="Przykład 1a" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> dziekanat.studenci
+                                            (nr_albumu, imie, nazwisko, pesel, data_urodzenia, adres_zamieszkania,
+                                            adres_korespondencyjny)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> ('94875', 'Jolanta', 'Korcz',
+                                            '86070510220', '1986-07-05', 25, 25);
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p> b)<br>
+                                <p>
+                                </p>
+                                <table title="Przykład 1b" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> dziekanat.studenci
+                                            (adres_korespondencyjny, nazwisko, imie, data_urodzenia, nr_albumu,
+                                            adres_zamieszkania, pesel)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> (26, 'Nowak', 'Andrzej',
+                                            '1990-02-05', '94876', 26, '90020505575');
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p> c)<br>
+                                <p>
+                                </p>
+                                <table title="Przykład 1c" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> dziekanat.studenci
+                                            (nazwisko, imie, data_urodzenia, nr_albumu, adres_zamieszkania,
+                                            adres_korespondencyjny)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> ('Stern', 'Joanna', '1974-11-02',
+                                            '94877', 27, 27);
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p> d)<br>
+                                <p>
+                                </p>
+                                <table title="Przykład 1d" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> ('94878', 'Dorota', 'Kowalska', NULL,
+                                            '1988-12-15', 28, 28);
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="note" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td><img
+                                                src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/note.gif"
+                                                width="28" height="25" border="0">
+                                        </td>
+                                        <td style="font-style: italic;" valign="center" align="left"><span
+                                                style="font-weight: bold;">.:: Jawne oraz niejawne odwoływanie się do kolumn w poleceniu INSERT ::.</span><br><br>W
+                                            rozwiązaniach aplikacyjnych należy mieć świadomość, że struktura bazy
+                                            danych jest strukturą dynamiczną, która ewoluuje nadążając za
+                                            zmieniającymi się wymaganiami. W związku z tym istnieje zasadnicza
+                                            różnica pomiędzy <span style="font-weight: bold;">jawnym </span>oraz
+                                            <span style="font-weight: bold;">niejawnym</span> odwoływaniem się do
+                                            kolumn tabeli.<br>Załóżmy, że w tabeli <span style="font-weight: bold;">studenci</span>
+                                            wprowadzone zostają następujące modyfikacje:<br>ALTER TABLE
+                                            dziekanat.studenci ADD COLUMN imie_ojca VARCHAR(25);<br><br>Wykonanie
+                                            kodu SQL z przykładu 1d (powyżej) w <b>PostgreSQL w wersji poniżej
+                                                9.0</b> zakończy się niepowodzeniem,<span
+                                                    style="font-weight: bold;"> </span>gdyż liczba dodawanych
+                                            wartości jest niezgodna (mniejsza) od aktualnej liczby kolumn tabeli
+                                            <span style="font-weight: bold;">studenci</span>. Natomiast kod SQL z
+                                            przykładów 1a, 1b oraz 1c zostanie wykonany poprawnie.<br><br>*) Aby
+                                            usunąć kolumnę z tabeli <span style="font-weight: bold;">studenci</span>
+                                            należy wykonać kod SQL:<br>ALTER TABLE dziekanat.studenci DROP COLUMN
+                                            imie_ojca;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p> <br><br></li>
+                            <li>Wprowadzanie wielu rekordów: <br><br>Składnia:
+                                <p>
+                                </p>
+                                <table class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> nazwa_tabeli
+                                            [(nazwa_kolumny_1,...,nazwa_kolumny_n)]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span>
+                                            (konstruktor_rekordu_1)[,...(konstruktor_rekordu_m)];
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> nazwa_tabeli<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span>
+                                            (konstruktor_rekordu_1)[,...,konstruktor_rekordu_m)];
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>Przykłady:<br></p>
+                                <p>
+                                </p>
+                                <table title="Przykład 2a" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> dziekanat.studenci
+                                            (nr_albumu, imie, nazwisko, pesel, data_urodzenia, adres_zamieszkania,
+                                            adres_korespondencyjny)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> ('94971', 'Anna', 'Szymbark',
+                                            '90061210220', '1990-06-12', 20, 20),
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span>('94972', 'Magdalena', 'Dufler',
+                                            '89012510220', '1989-01-25', 21, 21),
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span>('94973', 'Ewa', 'Koniczyna', '89081210220',
+                                            '1989-08-12', 22, 22);
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table title="Przykład 2b" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> dziekanat.studenci
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> ('99000', 'Aneta', 'Kowalewska',
+                                            '89093012320', '1989-09-30', 23, 23);
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">VALUES</span> ('99001', 'Łucja', 'Kowalińska',
+                                            '88020115240', '1988-02-01', 24, 24);
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p> <br><br></li>
+                            <li>Wprowadzanie pojedynczego lub wielu rekordów z wykorzystaniem podzapytania: <br><br>Składnia:
+                                <p>
+                                </p>
+                                <table class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span>
+                                            nazwa_tabeli_docelowej [(nazwa_kolumny_1,...,nazwa_kolumny_n)]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">SELECT</span>
+                                            [podzapytanie_nazwa_kolumny_1,...,podzapytanie_nazwa_kolumny_n | *]<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> nazwa_tabeli_źródłowej
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">WHERE</span> warunek;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>Przykłady:<br></p>
+                                <p>
+                                </p>
+                                <table title="Przykład 3a" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> dziekanat.przedmioty
+                                            (nazwa_przedmiotu, nr_semestru, ects, id_prowadzacego)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span>(<span class="sqlkey">SELECT</span>
+                                            nazwa_przedmiotu, 3, ects, id_prowadzacego <span
+                                                    class="sqlkey">FROM </span>dziekanat.przedmioty<span
+                                                    class="sqlkey"> WHERE</span> nr_semestru = 2);
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="note" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td><img
+                                                src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/note.gif"
+                                                width="28" height="25" border="0">
+                                        </td>
+                                        <td style="font-style: italic;" valign="center" align="left"><span
+                                                style="font-weight: bold;">.:: Kopiowanie danych (np. tabeli) ::.</span><br><br><span
+                                                style="font-style: italic;">W przypadku gdy istnieje konieczność wykonania kopii struktury i/lub danych określonego obiektu (np. tabeli, widoku) można wykorzystać składnię SQL CREATE....AS SELECT lub SELECT INTO.<br>Załóżmy, że istnieje potrzeba wykonania kopii tabeli <span
+                                                style="font-weight: bold;">studenci</span>. W przypadku gdy wykonujemy:<br>1) kopię wyłącznie struktury obiektu, wykorzystamy kod SQL:<br>CREATE TEMPORARY TABLE studenci_kopia AS<br>SELECT * FROM dziekanat.studenci WHERE NULL = NULL;<br>lub<br></span><span
+                                                style="font-style: italic;">SELECT * INTO TEMPORARY TABLE studenci_kopia FROM dziekanat.studenci<br>WHERE NULL = NULL;</span><br><span
+                                                style="font-style: italic;">2) kopię zarówno struktury jak i wszystkich danych przechowywanych w obiekcie, wykorzystamy kod SQL:<br></span><span
+                                                style="font-style: italic;">CREATE TEMPORARY TABLE studenci_kopia AS<br> SELECT * FROM dziekanat.studenci;<br>lub<br>SELECT * INTO TEMPORARY TABLE studenci_kopia FROM dziekanat.studenci;<br> </span><br>*)
+                                            Klauzula TEMPORARY w definicji tabeli oznacza, że obiekt jest tabelą
+                                            <span style="font-weight: bold;">tymczasową, </span>w związku z tym
+                                            będzie istnieć tylko w obrębie aktualnej sesji a po zakończeniu zostanie
+                                            usunięty.<br>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p></li>
+                            <br><br>
+                            <li>Weryfikacja wprowadzenia zmian tj. dodania rekordów w wykorzystaniem klauzuli <b>RETURNING</b>:
+                                <br><br>Składnia:
+                                <p>
+                                </p>
+                                <table class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span>
+                                            nazwa_tabeli_docelowej [(nazwa_kolumny_1,...,nazwa_kolumny_n)]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span><span class="sqlkey">VALUES</span>
+                                            (wartosc_1,...,wartosc_n)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span><span class="sqlkey"></span><span
+                                                class="sqlkey">RETURNING </span>[klauzula_nazwa_kolumny_1,...,klauzula_nazwa_kolumny_m
+                                            | *];
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span>
+                                            nazwa_tabeli_docelowej [(nazwa_kolumny_1,...,nazwa_kolumny_n)]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span><span class="sqlkey">SELECT</span>
+                                            [podzapytanie_nazwa_kolumny_1,...,podzapytanie_nazwa_kolumny_n | *]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">FROM</span> nazwa_tabeli_źródłowej
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">WHERE</span> warunek
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span><span class="sqlkey"></span><span
+                                                class="sqlkey">RETURNING </span>[klauzula_nazwa_kolumny_1,...,klauzula_nazwa_kolumny_m
+                                            | *];
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>Przykłady:<br></p>
+                                <p>
+                                </p>
+                                <table title="Przykład 3a" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">INSERT INTO</span> dziekanat.przedmioty
+                                            (nazwa_przedmiotu, nr_semestru, ects, id_prowadzacego)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span>(<span class="sqlkey">SELECT</span>
+                                            nazwa_przedmiotu, 4, ects, id_prowadzacego <span
+                                                    class="sqlkey">FROM </span>dziekanat.przedmioty<span
+                                                    class="sqlkey"> WHERE</span> nr_semestru = 4)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span><span class="sqlkey"></span><span
+                                                class="sqlkey">RETURNING </span>*;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table title="Przykład 3a" class="sql" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2"><span class="sqlkey">UPDATE</span> kadry.prowadzacy <br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">SET</span> placa_zasadnicza = 1.1*placa_zasadnicza
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey">WHERE</span> stanowisko = 'wykładowca'<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><br>
+                                        </td>
+                                        <td><span class="sqlkey"></span><span class="sqlkey"></span><span
+                                                class="sqlkey">RETURNING </span>imie, nazwisko, tytul,
+                                            placa_zasadnicza <span class="sqlkey">AS</span> "Podwyższona płaca
+                                            zasadnicza", (0.1/1.1*placa_zasadnicza)::<span
+                                                    class="sqlkey">NUMERIC</span><span
+                                                    class="sqlkey"></span>(6,2)<span class="sqlkey"> AS</span>
+                                            "Podwyżka";
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p>
+                                <p>
+                                </p>
+                                <table class="note" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td><img
+                                                src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/note.gif"
+                                                width="28" height="25" border="0">
+                                        </td>
+                                        <td style="font-style: italic;" valign="center" align="left"><span
+                                                style="font-weight: bold;">.:: Klauzula RETURNING ::.</span><br><br><span
+                                                style="font-style: italic;">Klauzula RETURNING może być wykorzystywana przy wykonywaniu dowolnej operacji zmiany danych tj. w przypadku:<br>- dodawania rekordów poleceniem INSERT<br>- usuwania </span><span
+                                                style="font-style: italic;">rekordów poleceniem DELETE<br>- </span><span
+                                                style="font-style: italic;"><span style="font-style: italic;">aktualizacji </span><span
+                                                style="font-style: italic;">rekordów poleceniem UPDATE</span></span><span
+                                                style="font-style: italic;"><span
+                                                style="font-style: italic;"><br></span></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p></li>
+                            <br>
+                        </ol>
+                        <a name="T1_2"> <b>Zadania<br><br></b></a>
+                        <ol type="A">
+                            <li> Skonstruuj kod SQL, który pozwoli uzupełnić tabelę <span
+                                    style="font-weight: bold;">numbers</span> (patrz wskazówka poniżej) wartościami
+                                ciągu od <span style="font-weight: bold;">0</span> do <span
+                                        style="font-weight: bold;">9999</span>.<br>
+                                <p>
+                                </p>
+                                <table class="note" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td><img
+                                                src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/note.gif"
+                                                width="28" height="25" border="0">
+                                        </td>
+                                        <td style="font-style: italic;" valign="center" align="left"><span
+                                                style="font-weight: bold;">.:: Uzupełnienie tabeli wartościami o określonym trendzie ::.</span><br><br><span
+                                                style="font-style: italic;">Załóżmy, że dana jest tabela <span
+                                                style="font-weight: bold;">numbers</span> o następującej strukturze:<br></span>CREATE
+                                            TABLE roznosci.numbers (number INTEGER PRIMARY KEY);<br>Aby wygenerować
+                                            ciąg wartości n...m tworzmy dodatkową strukturę w postaci tabeli <span
+                                                    style="font-weight: bold;">digits</span>:<br>CREATE TEMPORARY
+                                            TABLE digits (digit CHAR(1) PRIMARY KEY);*<br>Następnie <span
+                                                    style="font-weight: bold;"></span>uzupełniamy tabelę <span
+                                                    style="font-weight: bold;">digits </span>wartościami cyfr od 0
+                                            do 9:<br>INSERT INTO digits VALUES ('0'), ('1'), ('2'), ('3'), ('4'),
+                                            ('5'), ('6'), ('7'), ('8'), ('9');<br><br>W kolejnym kroku uzupełniamy
+                                            tabelę <span style="font-weight: bold;">numbers</span>
+                                            poprzez...?<br><br>*) Klauzula TEMPORARY w definicji tabeli oznacza, że
+                                            obiekt jest tabelą <span style="font-weight: bold;">tymczasową, </span>w
+                                            związku z tym będzie istnieć tylko w obrębie aktualnej sesji a po
+                                            zakończeniu zostanie usunięty.<br>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p><span style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20753"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20753">ZADANIA T1/2/A</a>.</span><br><br>
+                            </li>
+                            <li> Zmodyfikuj kod SQL powyższego zadania, tak, aby tabela <span
+                                    style="font-weight: bold;">numbers</span> uzupełniana był tylko wartościami
+                                nieparzystymi <span style="font-weight: bold;">1, 3,...,9999 </span>(patrz wskazówka
+                                poniżej).<br>
+                                <p>
+                                </p>
+                                <table class="note" cellpadding="5">
+                                    <tbody>
+                                    <tr>
+                                        <td><img
+                                                src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/note.gif"
+                                                width="28" height="25" border="0">
+                                        </td>
+                                        <td style="font-style: italic;" valign="center" align="left"><span
+                                                style="font-weight: bold;">.:: Operator modulo ::.</span><br><br><span
+                                                style="font-style: italic;"></span>W kryterium selekcji rekordów
+                                            zapytania, do wyboru wartości nieparzystych można wykorzystać operator
+                                            <span style="font-weight: bold;">MODULO</span> (<span
+                                                    style="font-weight: bold;">%</span>).<br>SELECT * FROM digits
+                                            WHERE NOT (digit::INTEGER % 2 = 0);<br>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p></p><span style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20754"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20754">ZADANIA T1/2/B</a>.</span><br><br>
+                            </li>
+                            <li>Utwórz zapytanie tworzące tabelę <b>absolwenci</b>, której struktura jest identyczna
+                                jak struktura tabeli <b>studenci_kierunkow</b> a następnie uzupełnij utworzoną
+                                tabelę danymi studentów, którzy już ukończyli studia.<br><br><span
+                                        style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20755"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20755">ZADANIA T1/2/C</a>.</span><br><br><br>
+                            </li>
+                        </ol>
+                    </ol>
+                    <b> TEMAT</b> : <a name="T2"><u>Usuwanie danych</u></a>
+                    <ol>
+                        <li><a name="T2_1"><b>Wprowadzenie<br></b><br></a>
+                            <ol>
+                                <li type="A">Usuwanie rekordów z tabeli.
+                                    <p>Składnia:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">DELETE FROM</span>
+                                                nazwa_schematu.nazwa_tabeli
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td>[<span class="sqlkey">WHERE</span> warunek];
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <p>Przykłady:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">DELETE FROM</span> dziekanat.zapisy
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">WHERE</span> data_czas_zapisu BETWEEN
+                                                '2012-10-01 00:00:00' AND '2012-12-31 23:59:59';
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">DELETE FROM</span>
+                                                dziekanat.studenci;
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p></li>
+                            </ol>
+                        </li>
+                        <br>
+                        <li><a name="T2_2"> <b>Zadania<br><br></b></a>
+                            <ol type="A">
+                                <li>Usuń z tabeli <b>absolwenci</b>, wszystkich absolwentów, którzy ukończyli studia
+                                    do końca 2012 roku.<br><br><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20756"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20756">ZADANIA T2/2/A</a>.</span><br><br><br><br>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <p><b>TEMAT</b> : <a name="T3"><u>Aktualizacja danych w tabeli</u></a><br></p>
+                    <ol>
+                        <li><a name="T3_1"> <b>Wprowadzenie<br><br></b></a>
+                            <ol type="A">
+                                <li>Modyfikowanie wierszy tabeli.
+                                    <p>Składnia:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">UPDATE</span>
+                                                nazwa_schematu.nazwa_tabeli
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">SET</span>
+                                                nazwa_kolumny=wartosc,...,nazwa_kolumny=wartosc
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td>[<span class="sqlkey">WHERE</span> warunek];
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <p>Przykład:</p>
+                                    <p>
+                                    </p>
+                                    <table class="sql" cellspacing="2" cellpadding="2">
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="2"><span class="sqlkey">UPDATE</span> dziekanat.adresy
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">SET</span> ulica='Solidarności'
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><br>
+                                            </td>
+                                            <td><span class="sqlkey">WHERE</span> ulica='1 Maja';
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p>
+                                    <p>
+                                    </p>
+                                    <table class="note" cellpadding="5">
+                                        <tbody>
+                                        <tr>
+                                            <td><img
+                                                    src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/note.gif"
+                                                    width="28" height="25" border="0">
+                                            </td>
+                                            <td style="font-style: italic;" valign="center" align="left"><span
+                                                    style="font-weight: bold;">.:: Aktualizacje wielokrotne ::.</span><br><br>Załóżmy,
+                                                że w wyniku reorganizacji armii, Ministerstwo Obrony Narodowej
+                                                podjęło decyzję o likwidacji części Wojskowych Komend Uzupełnień,
+                                                pozostawiając tylko te komendy, które znajdują się w miastach
+                                                wojewódzkich. Poborowi, należący do likwidowanych WKU, powinni
+                                                zostać przyporządkowani do właściwych im komend wojewódzkich.
+                                                Powyższe zadanie może zostać wykonane dwoma drogami:<br><br>A)
+                                                poprzez wykonanie serii elementarnych aktualizacji z <span
+                                                        style="font-weight: bold;">prostymi </span>kryteriami
+                                                warunkowymi, jednak wymagających <span style="font-weight: bold;">wielokrotnego </span>przeglądnięcia
+                                                danych zawartych w tabeli:<br>UPDATE dziekanat.wojsko SET wku = 'WKU
+                                                w Krakowie'<br>WHERE wku IN ('WKU w Tarnowie', 'WKU w Nowym Sączu');<br>UPDATE
+                                                dziekanat.wojsko SET wku = 'WKU w Rzeszowie'<br>WHERE wku IN ('WKU w
+                                                Dębicy', 'WKU w Mielcu');<br>UPDATE dziekanat.wojsko SET wku = 'WKU
+                                                w Kielcach'<br>WHERE wku IN ('WKU w Busku Zdroju', 'WKU w Skarżysku
+                                                Kamiennej');<br><br>B) poprzez wykonanie pojedynczej aktualizacji
+                                                wymagających <span style="font-weight: bold;">jednokrotnego </span>przeglądnięcia
+                                                danych zawartych w tabeli, jednak ze <span
+                                                        style="font-weight: bold;">złożonymi </span>kryteriami
+                                                warunkowymi:<br>UPDATE dziekanat.wojsko<br>SET wku = (CASE wku <br>
+                                                <img title=" " alt=" "
+                                                     src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                     width="25" vspace="0" hspace="0" height="1"
+                                                     border="0"><code></code>WHEN 'WKU w Tarnowie' THEN 'WKU w
+                                                Krakowie'<br><img title=" " alt=" "
+                                                                  src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                  width="25" vspace="0" hspace="0" height="1"
+                                                                  border="0"><code></code>WHEN 'WKU w Nowym Sączu'
+                                                THEN 'WKU w Krakowie'<br> <img title=" " alt=" "
+                                                                               src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                               width="25" vspace="0" hspace="0"
+                                                                               height="1" border="0"><code></code>WHEN
+                                                'WKU w Dębicy' THEN 'WKU w Rzeszowie'<br><img title=" " alt=" "
+                                                                                              src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                                              width="25" vspace="0"
+                                                                                              hspace="0" height="1"
+                                                                                              border="0"><code></code>WHEN
+                                                'WKU w Mielcu' THEN 'WKU w Rzeszowie'<br><img title=" " alt=" "
+                                                                                              src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                                              width="25" vspace="0"
+                                                                                              hspace="0" height="1"
+                                                                                              border="0"><code></code>WHEN
+                                                'WKU w Busku Zdroju' THEN 'WKU w Kielcach'<br><img title=" " alt=" "
+                                                                                                   src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                                                   width="25"
+                                                                                                   vspace="0"
+                                                                                                   hspace="0"
+                                                                                                   height="1"
+                                                                                                   border="0"><code></code>WHEN
+                                                'WKU w Skarżysku Kamiennej' THEN 'WKU w Kielcach'<br><img title=" "
+                                                                                                          alt=" "
+                                                                                                          src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                                                          width="25"
+                                                                                                          vspace="0"
+                                                                                                          hspace="0"
+                                                                                                          height="1"
+                                                                                                          border="0"><code></code>ELSE
+                                                wku<br> END)<br>RETURNING *;<br><br>UPDATE dziekanat.wku<br>SET wku
+                                                = (CASE <br><img title=" " alt=" "
+                                                                 src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                 width="25" vspace="0" hspace="0" height="1"
+                                                                 border="0">WHEN wku IN ('WKU w Tarnowie', 'WKU w
+                                                Nowym Sączu') THEN 'WKU w Krakowie'<br><img title=" " alt=" "
+                                                                                            src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                                            width="25" vspace="0"
+                                                                                            hspace="0" height="1"
+                                                                                            border="0">WHEN wku IN
+                                                ('WKU w Dębicy', 'WKU w Mielcu') THEN 'WKU w Rzeszowie'<br><img
+                                                        title=" " alt=" "
+                                                        src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                        width="25" vspace="0" hspace="0" height="1" border="0">WHEN
+                                                wku IN ('WKU w Busku Zdroju', 'WKU w Skarżysku Kamiennej') THEN 'WKU
+                                                w Kielcach'<br><img title=" " alt=" "
+                                                                    src="./BD I - Laboratorium 2020_2021_ KONSPEKT __ SQL - Wprowadzanie, usuwanie oraz aktualizacja danych._files/spacing.gif"
+                                                                    width="25" vspace="0" hspace="0" height="1"
+                                                                    border="0">ELSE wku<br>END)<br>RETURNING
+                                                *;<br><br>Sposób B (pojedyncza aktualizacja) jest bardziej optymalny
+                                                (koszt czasowy wykonania aktualizacji jest - w zależności od
+                                                przypadku - od kilkudziesięciu do kilkuset procent mniejszy niż w
+                                                sposobie A).
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p></p><br></li>
+                            </ol>
+                        </li>
+                        <br>
+                        <li><a name="T3_2"> <b>Zadania<br><br></b></a>
+                            <ol type="A">
+                                <li>W tabeli <b>prowadzacy</b> w schemacie <b>kadry</b> uaktualnij tytuł naukowy
+                                    pracownika <b>Alina Alinecka</b> na <b>prof. dr hab.</b> oraz zwiększ
+                                    wynagrodzenie pracownika o <b>1500 PLN</b>.<br><br><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20757"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20757">ZADANIA T3/2/A</a>.</span><br>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 </div>
