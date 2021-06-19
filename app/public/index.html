@@ -13,7 +13,508 @@
     <link href="/static/css/main.5a0696fd.chunk.css" rel="stylesheet">
 </head>
 <body>
-<div id="root"><h2>Test1ABCD</h2></div>
+<div id="root"><h2>Test1ABCD</h2>
+    <div class="box generalbox generalboxcontent boxaligncenter clearfix">
+        <link rel="stylesheet"
+              href="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/styleMOODLE.css"
+              type="text/css">
+        <table class="normal" width="100%" cellspacing="0" cellpadding="20" border="0">
+            <tbody>
+            <tr>
+                <td>
+                    <p class="title">Bazy danych :: SQL - <b>Typy danych, wartość NULL, proste zapytania
+                        wybierające, analiza zapytań</b></p>
+                    <p class="subtitle">Przygotowanie teoretyczne</p>
+                    <p class="subtitle">Cele dydaktyczne </p>
+                    <p class="subtitle">Literatura i odsyłacze</p>
+                    <ol>
+                        <li><a href="https://www.postgresql.org/download/">PostgreSQL: Download</a></li>
+                        <li><a href="https://www.pgadmin.org/download/">PgAdmin: Download</a></li>
+                        <li><a href="http://www.info.ucl.ac.be/~pvr/paradigmsDIAGRAMeng108.jpg"
+                               title="http://www.info.ucl.ac.be/~pvr/paradigmsDIAGRAMeng108.jpg">Peter Van Roy, Seif
+                            Haridi, <i>Concepts, Techniques, and Models of Computer Programming</i> : The principal
+                            programming paradigms, The MIT Press, 2004</a></li>
+                        <li>
+                            <a href="http://www.oracle.com/technetwork/issue-archive/2005/05-jul/o45sql-097727.html">Oracle:
+                                Nulls: Nothing to Worry About</a> <br></li>
+                        <li><a href="http://www.postgresql.org/docs/9.3/interactive/runtime-config.html"
+                               title="PostgreSQL : Documentation: Manuals: PostgreSQL 9.3: Server Configuration">PostgreSQL:
+                            Documentation: Manuals: PostgreSQL 9.3: Server Configuration</a></li>
+                        <li><a title="PostgreSQL : Documentation: Manuals: PostgreSQL 9.0: Data Types"
+                               href="http://www.postgresql.org/docs/9.0/interactive/datatype.html">PostgreSQL:
+                            Documentation: Manuals: PostgreSQL 9.0: Data Types</a></li>
+                        <li><a title="PostgreSQL : Documentation: Manuals: PostgreSQL 9.0: Functions and Operators"
+                               href="http://www.postgresql.org/docs/9.0/interactive/functions.html">PostgreSQL:
+                            Documentation: Manuals: PostgreSQL 9.0: Functions and Operators</a></li>
+                        <li><a title="PostgreSQL : Documentation: Manuals: PostgreSQL 9.0: Functions and Operators"
+                               href="http://www.postgresql.org/docs/9.0/interactive/functions.html"></a><a
+                                href="https://www.postgresql.org/docs/9.6/using-explain.html"
+                                title="PostgreSQL : Documentation: Manuals: PostgreSQL 9.6: Using EXPLAIN">PostgreSQL:
+                            Documentation: Manuals: PostgreSQL 9.6: Using EXPLAIN</a><br></li>
+                    </ol>
+                    <p class="subtitle">Przebieg ćwiczenia</p>
+                    <dl>
+                        <dt>T1 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T1">Środowisko
+                            pracy z bazą danych</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T1_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T1_2">Zadania</a><br>
+                        </dd>
+                        <dt>T2 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T2">Typy danych
+                            oraz wartość NULL</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T2_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T2_2">Zadania</a><br>
+                        </dd>
+                        <dt>T3 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T3">Proste
+                            zapytania wybierające</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T3_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T3_2">Zadania</a><br>
+                        </dd>
+                        <dt>T4 : <a href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T4">Analiza
+                            zapytań</a></dt>
+                        <dd>1. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T4_1">Wprowadzenie<br></a>
+                        </dd>
+                        <dd>2. <a
+                                href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=20732#T4_2">Zadania</a><br>
+                        </dd>
+                    </dl>
+                    <p><br></p>
+                    <p><a name="T1" style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"><span
+                            style="color: rgb(0, 0, 0);"><br><b>TEMAT</b></span> : <span
+                            style="text-decoration: underline;">Środowisko pracy z bazą danych</span></a><br></p>
+                    <ol>
+                        <li><a name="T1_1"> <span style="font-weight: bold;">Wprowadzenie</span></a><br><br>
+                            <ol type="A">
+                                <li>Połącz się z instancją bazy danych z wykorzystaniem klienta <b>PgAdmin </b>zgodnie
+                                    z procedurą przedstawioną w zasobie <a title="/mod/resource/view.php?id=17043"
+                                                                           href="https://pe.pwsztar.edu.pl/mod/resource/view.php?id=17043">Narzędzia
+                                        dostępu do BAZY DANYCH</a>.<br><br></li>
+                                <li>Pobierz plik <a target="_blank" title="Uczelnia 4.0"
+                                                    href="https://pe.pwsztar.edu.pl/file.php/486/scripts/Uczelnia_4_10_DDL_DATA_UTF8.sql">UCZELNIA_4.10.SQL</a>
+                                    (UTF-8) na dysk lokalny, następnie otwórz plik z wykorzystaniem <b>Narzędzia
+                                        kwerend</b> klienta <b>PgAdmin</b> (Tools - Query Tool a następnie File -
+                                    Open) oraz zapoznaj się z jego treścią.<br><br></li>
+                                <li>Uruchom plik <a target="_blank" title="Uczelnia 4.0"
+                                                    href="https://pe.pwsztar.edu.pl/file.php/486/scripts/Uczelnia_4_10_DDL_DATA_UTF8.sql">UCZELNIA_4.10.SQL</a>
+                                    w <b>Narzędziu kwerend</b> (Query - Execute).<br><br></li>
+                                <li>Zapoznaj się ze środowiskiem programu <span
+                                        style="font-weight: bold;">PgAdmin</span>, strukturą oraz obiektami
+                                    instancji bazy danych oraz zapisanymi w tabelach danym.<br><br>
+                                    <p></p>
+                                    <table class="note" width="800" cellpadding="5">
+                                        <tbody>
+                                        <tr>
+                                            <td><img
+                                                    src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/note.gif"
+                                                    width="28" height="25" border="0">
+                                            </td>
+                                            <td style="font-style: italic;" valign="center" align="left"><span
+                                                    style="font-weight: bold;">.:: Instalacja serwera bazodanowego z tworzeniem instancji bazy danych ::.</span><br><br><span
+                                                    style="font-style: italic;"></span>Skrypt <a target="_blank"
+                                                                                                 title="Uczelnia 4.0"
+                                                                                                 href="https://pe.pwsztar.edu.pl/file.php/486/scripts/Uczelnia_4_10_DDL_DATA_UTF8.sql">UCZELNIA_4.10.SQL</a>
+                                                może zostać wykorzystany do utworzenia obiektów oraz wypełnienia
+                                                danymi instancji bazy danych zlokalizowanej na własnym, wcześniej
+                                                zainstalowanym serwerze bazodanowym.<br><br>W tym celu konieczne
+                                                jest:
+                                                <ol type="a">
+                                                    <li>Pobranie wersji instalacyjnej bazy danych PostgreSQL wraz z
+                                                        klientem PgAdmin, którą dla systemu Linux oraz Windows można
+                                                        pobrać <a
+                                                                href="http://www.enterprisedb.com/products-services-training/pgdownload"
+                                                                title="http://www.enterprisedb.com/products-services-training/pgdownload">stąd</a>
+                                                        lub <a href="https://www.postgresql.org/download/"
+                                                               title="https://www.postgresql.org/download/">stąd</a>.<br>
+                                                    </li>
+                                                    <li>Instalacja serwera bazy danych PostgreSQL wraz z klientem
+                                                        PgAdmin;
+                                                    </li>
+                                                    <li>Utworzenie administratora, który będzie zarządzał serwerem
+                                                        bazodanowym. Możliwe jest wykorzystanie użytkownika
+                                                        <b>postgres</b>,
+                                                        który jest standardowo tworzony podczas instalacji serwera
+                                                        bazy danych;<br></li>
+                                                    <li>Utworzenie instancji bazy danych z kodowaniem <b>UTF-8</b>
+                                                        oraz porównaniem znakowym<span style="font-weight: bold;"> pl_PL.UTF8</span>
+                                                        (rys. 1);<br></li>
+                                                    <li>Uruchomienie w ramach utworzonej instancji bazy danych,
+                                                        skryptu tworzącego wszystkie obiekty (tabele, widoki,
+                                                        wyzwalacze) bazy danych oraz uzupełniającego bazę danymi <a
+                                                                target="_blank" title="Uczelnia 4.0"
+                                                                href="https://pe.pwsztar.edu.pl/file.php/486/scripts/Uczelnia_4_10_DDL_DATA_UTF8.sql">UCZELNIA_4.10.SQL</a>:
+                                                        <ol type="i">
+                                                            <li>w <b>oknie SQL</b> programu PgAdmin;<br>ALBO<a
+                                                                    href="http://pe.pwsztar.edu.pl/file.php/369/scripts/dziekanat-2-4.sql"
+                                                                    target="_blank"
+                                                                    title="Dziekanat_2-4.sql"><br></a></li>
+                                                            <li>w konsoli psql z wykorzystaniem polecenia <span
+                                                                    style="font-weight: bold;">\i ścieżka_dostępu\Uczelnia_4_10_DDL&amp;DATA_UTF8.sql</span><a
+                                                                    href="https://pe.pwsztar.edu.pl/file.php/486/scripts/Uczelnia_4_10_DDL_DATA_UTF8.sql"
+                                                                    target="_blank"
+                                                                    title="Uczelnia 4.10"><br><br></a></li>
+                                                        </ol>
+                                                    </li>
+                                                </ol>
+                                                <center><a name="SSHSS"><img
+                                                        src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/db_create.gif"
+                                                        alt="DB Create" title="DB Create" width="406" vspace="0"
+                                                        hspace="0" height="503" border="0"></a></center>
+                                                <center><i><br>Rys. 1 Okno tworzenia instancji bazy danych w
+                                                    programie PgAdmin<br></i></center>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p style="font-weight: bold;"><br></p></li>
+                            </ol>
+                        </li>
+                        <li><a name="T1_2"><b>Zadania.</b></a><br><br>
+                            <ol type="A">
+                                <li>Na komputerze osobistym/domowym zainstaluj PostgreSQL oraz utwórz instancję bazy
+                                    danych <a target="_blank" title="Uczelnia 4.0"
+                                              href="https://pe.pwsztar.edu.pl/file.php/486/scripts/Uczelnia_4_10_DDL_DATA_UTF8.sql">UCZELNIA_4.10.SQL</a>
+                                    (zadanie do wykonania w ramach pracy własnej).<span
+                                            style="font-weight: bold;"><br></span><br><br><br></li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <p><a style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" name="T2"> <span
+                            style="color: rgb(0, 0, 0);"><b>TEMAT</b></span> : <span
+                            style="text-decoration: underline;">Typy danych oraz wartość NULL</span></a><br></p>
+                    <ol>
+                        <li><a name="T2_1"> <span style="font-weight: bold;">Wprowadzenie</span></a><br><br></li>
+                        <ol type="A">
+                            <li>Zapoznaj się z typami danych zgodnymi ze standardem SQL 2011.<br><br>
+                                <table class="table" width="800" cellspacing="0" cellpadding="5"
+                                       bordercolor="#ffffff" border="1">
+                                    <tbody>
+                                    <tr>
+                                        <th width="40%">Typ danych
+                                        </th>
+                                        <th>Opis
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>CHARACTER(m)
+                                        </td>
+                                        <td>Łańcuch znakowy o stałej długości m znaków.<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>VARCHAR(m) albo CHARACTER VARYING(m)
+                                        </td>
+                                        <td>Łańcuch znakowy o zmiennej długości, maksymalnie m znaków.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>BINARY(m)
+                                        </td>
+                                        <td>Łańcuch binarny o stałej długości m bitów.<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>BOOLEAN
+                                        </td>
+                                        <td>Typ logiczny.<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>VARBINARY(m) albo BINARY VARYING(m)
+                                        </td>
+                                        <td>Łańcuch binarny o zmiennej długości, maksymalnie m bitów.<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>INTEGER(p)
+                                        </td>
+                                        <td> Wartość liczbowa całkowita o precyzji p.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SMALLINT
+                                        </td>
+                                        <td> Wartość liczbowa całkowita o precyzji 5.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>INTEGER
+                                        </td>
+                                        <td> Wartość liczbowa całkowita o precyzji 10.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>BIGINT<br>
+                                        </td>
+                                        <td> Wartość liczbowa całkowita o precyzji 19.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>DECIMAL(p,s)
+                                        </td>
+                                        <td>Wartość liczbowa rzeczywista stałoprzecinkowa o precyzji p oraz skali s.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>NUMERIC(p,s)
+                                        </td>
+                                        <td> Wartość liczbowa rzeczywista stałoprzecinkowa o precyzji p oraz skali
+                                            s.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FLOAT(p)
+                                        </td>
+                                        <td> Wartość liczbowa rzeczywista zmiennoprzecinkowa o precyzji p.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>REAL
+                                        </td>
+                                        <td> Wartość liczbowa rzeczywista zmiennoprzecinkowa o precyzji 7.<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FLOAT
+                                        </td>
+                                        <td> Wartość liczbowa rzeczywista zmiennoprzecinkowa o precyzji 16.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>DOUBLE PRECISION
+                                        </td>
+                                        <td> Wartość liczbowa rzeczywista zmiennoprzecinkowa o precyzji 16.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>DATE
+                                        </td>
+                                        <td> Data kalendarzowa.<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>TIME
+                                        </td>
+                                        <td>Czas.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>TIMESTAMP
+                                        </td>
+                                        <td>Data kalendarzowa i czas.<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>INTERVAL
+                                        </td>
+                                        <td>Okres.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>ARRAY
+                                        </td>
+                                        <td>Uporządkowana kolekcja elementów stałego rozmiaru (tablica).<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>MULTISET
+                                        </td>
+                                        <td>Nieuporządkowana kolekcja elementów zmiennego rozmiaru (tablica).
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>XML
+                                        </td>
+                                        <td>Dane XML.<br>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <br>W przypadku poszczególnych systemów zarządzania bazami danych, typy danych
+                                zgodne ze standardem SQL mogą być zmienione lub rozszerzone. Zestawienie dostępnych
+                                typów danych dla bazy PostgreSQL znajduje się <a title="PostgreSQL 9.0 Data Types"
+                                                                                 href="http://www.postgresql.org/docs/9.0/interactive/datatype.html">tutaj</a>.<br><br><br>
+                            </li>
+                            <li>Konwersja oraz rzutowanie typów danych.<br><br><br>Przykłady:
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_CASTING_EXAMPLES"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_CASTING_EXAMPLES.html"
+                                            width="100%" height="150" frameborder="0"></iframe>
+                                </p>
+                                <p></p> <br></li>
+                            <li>Interpretacja wartości NULL.<br><br>Wartość <span
+                                    style="font-weight: bold;">NULL</span> może być interpretowana jako:<br>
+                                <ol type="a">
+                                    <li>Wartość jeszcze <span style="font-weight: bold;">NIEZNANA</span>;</li>
+                                    <li>Wartość jeszcze <span style="font-weight: bold;">NIEISTNIEJĄCA</span>;</li>
+                                    <li>Wartość <span style="font-weight: bold;">NIE DOTYCZY</span>.</li>
+                                </ol>
+                                <p><br>Przykłady:</p>
+                                <p></p>
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_NULLS_EXAMPLES"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_NULLS_EXAMPLES.html"
+                                            width="100%" height="250" frameborder="0"></iframe>
+                                </p>
+                                <p></p></li>
+                            <br>
+                        </ol>
+                    </ol>
+                    <ol>
+                        <li><a name="T2_2"><b>Zadania.</b></a><br><br>
+                            <ol type="A">
+                                <li>Wyjaśnij, czy zdanie <i>p OR NOT p</i> zgodnie z logiką trójwartościową (3VL)
+                                    jest zawsze prawdziwe?<i><br><br></i><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20733"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20733">ZADANIA T2/2/A</a>.<br><br></span>
+                                </li>
+                                <li>Wyjaśnij, czy zdanie <i>p &gt;= 10 OR p &lt; 10</i> w języku SQL jest <a
+                                        href="http://pl.wikipedia.org/wiki/Tautologia_%28logika%29"
+                                        title="http://pl.wikipedia.org/wiki/Tautologia_%28logika%29">tautologią</a>?<i><br><br></i><span
+                                        style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20734"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20734">ZADANIA T2/2/B</a>.<br><br></span>
+                                </li>
+                                <li>Wyjaśnij, czy w języku SQL warunek <i>NOT a IS NULL</i> jest równoważny
+                                    warunkowi <i>a IS NOT NULL</i><a
+                                            href="http://pl.wikipedia.org/wiki/Tautologia_%28logika%29"
+                                            title="http://pl.wikipedia.org/wiki/Tautologia_%28logika%29"></a>?<i><br><br></i><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20735"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20735">ZADANIA T2/2/C</a>.<br><br></span>
+                                </li>
+                                <li>Podaj interpretację zdania w języku SQL <i>NOT a IS NULL AND NOT a IS NOT
+                                    NULL</i>.<i><br><br></i><span style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20736"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20736">ZADANIA T2/2/D</a>.</span><br><br><br>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <br>
+                    <p><a style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" name="T3"> <span
+                            style="color: rgb(0, 0, 0);"><b>TEMAT</b></span> : <span
+                            style="text-decoration: underline;">Proste zapytania wybierające</span></a><br></p>
+                    <ol>
+                        <li><a name="T3_1"> <span style="font-weight: bold;">Wprowadzenie</span></a><br><br></li>
+                        <ol type="A">
+                            <li>Zapoznaj się ze składnią oraz przykładami definiowania prostego zapytania.
+                                <p>Składnia:<br></p>
+                                <p></p>
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_SELECT_SYNTAX_1"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_SELECT_SYNTAX_1.html"
+                                            width="100%" height="75" frameborder="0"></iframe>
+                                </p>
+                                <p>Przykłady:</p>
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_SELECT_EXAMPLES_1"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_SELECT_EXAMPLES_1.html"
+                                            width="100%" height="350" frameborder="0"></iframe>
+                                </p>
+                            </li>
+                            <br><br>
+                            <li>Zapoznaj się ze składnią oraz przykładami definiowania prostego zapytania
+                                wybierającego dane z pojedynczej tabeli.
+                                <p>Składnia:<br></p>
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_SELECT_SYNTAX_2"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_SELECT_SYNTAX_2.html"
+                                            width="100%" height="200" frameborder="0"></iframe>
+                                </p>
+                                <p>Przykłady:</p>
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_SELECT_EXAMPLES_2"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_SELECT_EXAMPLES_2.html"
+                                            width="100%" height="300" frameborder="0"></iframe>
+                                </p>
+                            </li>
+                            <br>
+                            <li>Zapoznaj się z możliwościami definiowania zapytań wybierających z dzieleniem
+                                rezultatów.<br> <br>Składnia:
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_SELECT_SYNTAX_3"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_SELECT_SYNTAX_3.html"
+                                            width="100%" height="125" frameborder="0"></iframe>
+                                </p>
+                                <p>Przykłady:</p>
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_SELECT_EXAMPLES_3"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_SELECT_EXAMPLES_3.html"
+                                            width="100%" height="300" frameborder="0"></iframe>
+                                </p>
+                            </li>
+                        </ol>
+                        <br>
+                        <li><a name="T3_2"><b>Zadania.</b></a><br><br>
+                            <ol type="A">
+                                <li>Zdefiniuj dwa proste zapytania wybierające dane odpowiednio z tabeli
+                                    <b>przedmioty</b>
+                                    znajdującej się w schemacie <b>dziekanat</b><i> </i>oraz z tabeli
+                                    <b>prowadzacy</b> znajdującej się w schemacie <b>kadry</b>.<i><br><br></i><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20737"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20737">ZADANIA T3/2/A</a>.<br><br></span>
+                                </li>
+                                <li>Zdefiniuj zapytanie wybierające <b>tylko</b> parzyste rekordy z tabeli
+                                    <b>fakultety</b>.<i><br><br></i><span
+                                            style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                            style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20738"
+                                                                          href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20738">ZADANIA T3/2/B</a>.<br></span><br><br><br>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <p><a style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" name="T4"> <span
+                            style="color: rgb(0, 0, 0);"><b>TEMAT</b></span> : <span
+                            style="text-decoration: underline;">Analiza zapytań</span></a><br></p>
+                    <ol>
+                        <li><a name="T4_1"> <span style="font-weight: bold;">Wprowadzenie</span></a><br><br></li>
+                        <ul type="A">
+                            <li>Zapoznaj się z możliwościami analizy zapytań.<br>
+                                <p>Składnia:</p>
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_EXPLAIN_SYNTAX"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_EXPLAIN_SYNTAX.html"
+                                            width="100%" height="100" frameborder="0"></iframe>
+                                </p>
+                                <p>Przykłady:</p>
+                                <p>
+                                    <iframe name="SQL_Data_Types_Nulls_EXPLAIN_EXAMPLES"
+                                            src="./BD I - Laboratorium 2020_2021_ INSTRUKCJA __ SQL - TYPY DANYCH, WARTOŚĆ NULL, PROSTE ZAPYTANIA WYBIERAJĄCE, ANALIZA ZAPYTAŃ_files/SQL_Data_Types_Nulls_EXPLAIN_EXAMPLES.html"
+                                            width="100%" height="150" frameborder="0"></iframe>
+                                </p>
+                            </li>
+                        </ul>
+                        <br>
+                        <li><a name="T4_2"> <span style="font-weight: bold;">Zadania</span></a><br><br></li>
+                        <ul type="A">
+                            <li>Wyjaśnij co oznaczają parametry<i> rows</i>,<i> width</i> oraz<i> loops</i> w
+                                rezultacie wykonania zapytania z analizą EXPLAIN ANALYZE<i>.<br><br></i><span
+                                        style="font-weight: bold; color: rgb(0, 0, 0);">Propozycję rozwiązania prześlij do </span><span
+                                        style="font-weight: bold;"><a title="/mod/assignment/view.php?id=20739"
+                                                                      href="https://pe.pwsztar.edu.pl/mod/assignment/view.php?id=20739">ZADANIA T4/2/A</a>.</span>
+                            </li>
+                        </ul>
+                    </ol>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modified">Ostatnia modyfikacja: piątek, 5 marzec 2021, 10:28</div>
+
+
+</div>
 
 </body>
 </html>
